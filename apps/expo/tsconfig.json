@@ -1,0 +1,19 @@
+{
+  "extends": "expo/tsconfig.base",
+  "compilerOptions": {
+    "strict": true,
+    "jsxImportSource": "nativewind",
+    "baseUrl": ".",
+    "paths": {
+      "@pivot/app": ["../../packages/app/index.ts"],
+      "@pivot/app/*": ["../../packages/app/*"]
+    }
+  },
+  "include": [
+    "**/*.ts",
+    "**/*.tsx",
+    "nativewind-env.d.ts",
+    "expo-env.d.ts",
+    ".expo/types/**/*.ts"
+  ]
+}

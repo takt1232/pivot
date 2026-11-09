@@ -1,0 +1,30 @@
+# dependencies
+node_modules
+
+# next
+.next
+out
+*.tsbuildinfo
+
+# expo
+.expo
+dist
+web-build
+apps/expo/android
+apps/expo/ios
+
+# turbo
+.turbo
+
+# logs
+*.log
+npm-debug.log*
+
+# env
+.env
+.env.local
+.env.*.local
+
+# os
+.DS_Store
+Thumbs.db
