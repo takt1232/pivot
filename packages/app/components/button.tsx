@@ -1,6 +1,7 @@
-import { Pressable, Text } from 'react-native'
+import { Text } from 'react-native'
 
 import { useTheme } from '../provider/theme'
+import { Pressable } from './pressable'
 
 type ButtonProps = {
   label: string
@@ -22,6 +23,7 @@ export function Button({
     <Pressable
       accessibilityRole="button"
       onPress={onPress}
+      hitSlop={8}
       className={`rounded-xl px-4 py-3 active:opacity-70 ${
         isPrimary ? colors.accentBg : colors.chip
       } ${className}`}

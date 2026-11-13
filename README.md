@@ -75,6 +75,7 @@ npm run format           # Prettier + Tailwind class sorting
 - `solito/link` and `solito/navigation` are used inside shared screens. On web they delegate to `next/link` and `next/navigation`; on native they delegate to Expo Router / React Navigation.
 - Styling is NativeWind `className` everywhere. Theme colors are static class strings in `packages/app/provider/theme.tsx` (light/dark), not dynamically generated names, so Tailwind can see them.
 - `SafeAreaProvider` receives zeroed initial metrics on web. Without metrics it renders nothing during SSR, which would produce an empty first paint.
+- Shared buttons go through `packages/app/components/pressable.tsx`. On web it behaves like a normal `Pressable` (`onPress`, so keyboard activation works). On native it fires on `onPressIn`, working around a React Native 0.81 + New Architecture + native-stack bug that drops `onPress` on some Android devices.
 
 ### NativeWind and the Next.js App Router
 

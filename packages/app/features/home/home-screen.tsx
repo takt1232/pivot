@@ -1,8 +1,9 @@
 import { useRouter } from 'solito/navigation'
 import { Link } from 'solito/link'
-import { Pressable, Text, View } from 'react-native'
+import { Text, View } from 'react-native'
 
 import { Card } from '../../components/card'
+import { Pressable } from '../../components/pressable'
 import { Screen } from '../../components/screen'
 import { Body, Caption, Heading } from '../../components/text'
 import { tintClasses, users } from '../../data/users'
@@ -34,7 +35,9 @@ export function HomeScreen() {
         <Pressable
           accessibilityRole="button"
           onPress={toggleTheme}
-          className={`rounded-full border px-3 py-2 ${colors.border} ${colors.chip}`}
+          hitSlop={8}
+          testID="theme-toggle"
+          className={`rounded-full border px-3 py-2 active:opacity-70 ${colors.border} ${colors.chip}`}
         >
           <Text className={`text-xs font-semibold ${colors.text}`}>
             {theme === 'light' ? 'Dark mode' : 'Light mode'}
@@ -86,6 +89,8 @@ export function HomeScreen() {
         <Pressable
           accessibilityRole="button"
           onPress={() => router.push(`/users/${spotlight.id}`)}
+          hitSlop={4}
+          testID="open-profile"
           className={`rounded-xl px-4 py-3 active:opacity-70 ${colors.accentBg}`}
         >
           <Text
