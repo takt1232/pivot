@@ -11,32 +11,55 @@ import {
 
 export type ThemeName = 'light' | 'dark'
 
+/**
+ * The scoresheet world, as class tokens.
+ *
+ * Light is the committed world: a paper score pad. Dark is the same pad at
+ * night, not an inversion — the rules soften and the annotation keeps its
+ * ink. Feature code never names a raw colour; it asks for a role.
+ */
 export const themes = {
   light: {
-    background: 'bg-slate-50',
-    surface: 'bg-white border-slate-200',
-    text: 'text-slate-900',
-    muted: 'text-slate-500',
-    faint: 'text-slate-400',
-    accent: 'text-indigo-600',
-    accentBg: 'bg-indigo-600',
-    onAccent: 'text-white',
-    chip: 'bg-slate-100',
-    border: 'border-slate-200',
-    divider: 'bg-slate-200',
+    background: 'bg-paper',
+    surface: 'bg-sheet border-rule',
+    text: 'text-ink',
+    muted: 'text-pencil',
+    faint: 'text-pencil-soft',
+    accent: 'text-annotation',
+    accentBg: 'bg-annotation',
+    annotationBg: 'bg-annotation',
+    onAccent: 'text-sheet',
+    chip: 'bg-sel',
+    border: 'border-rule',
+    divider: 'bg-rule',
+    strong: 'border-rule-strong',
+    ink: 'bg-ink',
+    onInk: 'text-sheet',
+    sel: 'bg-sel',
+    annotation: 'border-annotation',
+    resolved: 'text-resolved',
+    sheet: 'bg-sheet',
   },
   dark: {
-    background: 'bg-slate-950',
-    surface: 'bg-slate-900 border-slate-800',
-    text: 'text-slate-50',
-    muted: 'text-slate-400',
-    faint: 'text-slate-500',
-    accent: 'text-indigo-400',
-    accentBg: 'bg-indigo-500',
-    onAccent: 'text-white',
-    chip: 'bg-slate-800',
-    border: 'border-slate-800',
-    divider: 'bg-slate-800',
+    background: 'bg-night',
+    surface: 'bg-night-sheet border-night-rule',
+    text: 'text-night-ink',
+    muted: 'text-night-pencil',
+    faint: 'text-night-soft',
+    accent: 'text-night-annotation',
+    accentBg: 'bg-night-annotation',
+    annotationBg: 'bg-night-annotation',
+    onAccent: 'text-night',
+    chip: 'bg-night-sel',
+    border: 'border-night-rule',
+    divider: 'bg-night-rule',
+    strong: 'border-night-strong',
+    ink: 'bg-night-ink',
+    onInk: 'text-night',
+    sel: 'bg-night-sel',
+    annotation: 'border-night-annotation',
+    resolved: 'text-night-resolved',
+    sheet: 'bg-night-sheet',
   },
 } as const
 

@@ -44,11 +44,11 @@ export function UserDetailScreen({ id }: UserDetailScreenProps) {
 
       <View className="items-center gap-4 py-4">
         <View
-          className={`h-24 w-24 items-center justify-center rounded-full ${
+          className={`h-24 w-24 items-center justify-center ${
             tintClasses[user.tint]
           }`}
         >
-          <Text className="text-3xl font-black text-white">
+          <Text className="font-sans text-3xl font-semibold text-paper">
             {user.initials}
           </Text>
         </View>

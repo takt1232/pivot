@@ -1,7 +1,7 @@
 'use client'
 
-import { HomeScreen } from '@pivot/app'
+import { BoardScreen } from '@pivot/app'
 
 export default function Page() {
-  return <HomeScreen />
+  return <BoardScreen />
 }

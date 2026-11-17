@@ -11,7 +11,7 @@ export function Card({ children, className = '' }: CardProps) {
   const { colors } = useTheme()
 
   return (
-    <View className={`rounded-2xl border p-5 ${colors.surface} ${className}`}>
+    <View className={`border p-5 ${colors.surface} ${className}`}>
       {children}
     </View>
   )

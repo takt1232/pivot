@@ -12,7 +12,7 @@ export function Heading({ children, className = '' }: TextProps) {
 
   return (
     <Text
-      className={`text-3xl font-bold tracking-tight ${colors.text} ${className}`}
+      className={`font-sans text-3xl font-semibold tracking-[-0.02em] ${colors.text} ${className}`}
     >
       {children}
     </Text>
@@ -23,7 +23,9 @@ export function Body({ children, className = '' }: TextProps) {
   const { colors } = useTheme()
 
   return (
-    <Text className={`text-base leading-6 ${colors.muted} ${className}`}>
+    <Text
+      className={`font-mono text-[13.5px] leading-6 ${colors.muted} ${className}`}
+    >
       {children}
     </Text>
   )
@@ -34,7 +36,7 @@ export function Caption({ children, className = '' }: TextProps) {
 
   return (
     <Text
-      className={`text-xs font-semibold uppercase tracking-widest ${colors.faint} ${className}`}
+      className={`font-sans text-[9.5px] font-semibold uppercase tracking-[0.14em] ${colors.faint} ${className}`}
     >
       {children}
     </Text>
