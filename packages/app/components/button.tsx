@@ -24,13 +24,13 @@ export function Button({
       accessibilityRole="button"
       onPress={onPress}
       hitSlop={8}
-      className={`rounded-xl px-4 py-3 active:opacity-70 ${
-        isPrimary ? colors.accentBg : colors.chip
+      className={`min-h-[44px] justify-center border px-4 py-3 active:opacity-70 ${
+        isPrimary ? `${colors.ink} ${colors.strong}` : `border ${colors.strong}`
       } ${className}`}
     >
       <Text
-        className={`text-center text-base font-semibold ${
-          isPrimary ? colors.onAccent : colors.text
+        className={`text-center font-sans text-[11px] font-semibold uppercase tracking-[0.12em] ${
+          isPrimary ? colors.onInk : colors.text
         }`}
       >
         {label}

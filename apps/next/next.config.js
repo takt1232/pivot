@@ -14,6 +14,9 @@ const nativeAliases = {
 const nextConfig = {
   // Reanimated does not support React strict mode on the web.
   reactStrictMode: false,
+  // The dev server is opened from both localhost and 127.0.0.1 while testing.
+  allowedDevOrigins: ['127.0.0.1'],
+  devIndicators: false,
   transpilePackages: [
     '@pivot/app',
     'solito',

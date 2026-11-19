@@ -1,3 +1,3 @@
-import { HomeScreen } from '@pivot/app'
+import { BoardScreen } from '@pivot/app'
 
-export default HomeScreen
+export default BoardScreen

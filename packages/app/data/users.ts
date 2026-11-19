@@ -45,10 +45,10 @@ export const users: User[] = [
 ]
 
 export const tintClasses: Record<UserTint, string> = {
-  indigo: 'bg-indigo-500',
-  emerald: 'bg-emerald-500',
-  amber: 'bg-amber-500',
-  rose: 'bg-rose-500',
+  indigo: 'bg-ink',
+  emerald: 'bg-resolved',
+  amber: 'bg-annotation',
+  rose: 'bg-pencil',
 }
 
 export function getUser(id: string): User | undefined {
