@@ -1,8 +1,8 @@
 # Pivot
 
-One codebase, two platforms: a Next.js App Router site and an Expo/React Native app that share screens, routing and a design system.
+One codebase, two platforms: a local-first project and task app built with Next.js and Expo/React Native, sharing screens, routing and a design system.
 
-The point of this repo is not the demo content. It is the wiring: one shared TypeScript package rendered by both `react-native-web` on Next.js and React Native on iOS/Android, with Solito bridging the two routers.
+Projects hold tasks; tasks carry subtasks, comments and a derived progress percentage when subtasks exist. Everything is stored on the device. There is no backend, account or sample data; the app opens on an empty project list and the owner creates the first project.
 
 ## Stack
 
@@ -25,21 +25,21 @@ Expo SDK 54 is the last version covered by Solito's tested compatibility matrix.
 pivot/
 ├─ apps/
 │  ├─ next/                  Next.js App Router entry point
-│  │  ├─ app/page.tsx        thin client route -> shared HomeScreen
-│  │  ├─ app/users/[id]/     thin client route -> shared UserDetailScreen
+│  │  ├─ app/page.tsx        thin client route -> shared ProjectsScreen
+│  │  ├─ app/projects/[id]/  thin client route -> shared ProjectScreen
 │  │  └─ next.config.js      RNW aliases + transpiled workspace packages
 │  └─ expo/                  Expo entry point
 │     ├─ app/_layout.tsx     providers + <Stack>
-│     ├─ app/index.tsx       thin route -> shared HomeScreen
-│     ├─ app/users/[id].tsx  thin route -> shared UserDetailScreen
+│     ├─ app/index.tsx       thin route -> shared ProjectsScreen
+│     ├─ app/projects/[id].tsx thin route -> shared ProjectScreen
 │     ├─ metro.config.js     monorepo watch folders + NativeWind
 │     └─ tailwind.config.js  re-exports the root config for NativeWind
 ├─ packages/
 │  └─ app/                   @pivot/app, the actual application
-│     ├─ components/         Screen, Card, Button, text primitives
-│     ├─ data/               demo users
-│     ├─ features/           shared screens
-│     ├─ provider/           safe area + theme context
+│     ├─ components/         Screen, Card, Button, TextInput, text primitives
+│     ├─ data/               project/task types, date helpers, storage adapter
+│     ├─ features/projects/  project list and the per-project task sheet
+│     ├─ provider/           safe area, theme, local store
 │     └─ index.ts            public surface
 ├─ tailwind.config.js        one config for web and native
 ├─ turbo.json
@@ -131,6 +131,16 @@ adb shell am start -n com.pivot.app/.MainActivity
 - `SafeAreaProvider` receives zeroed initial metrics on web. Without metrics it renders nothing during SSR, which would produce an empty first paint.
 - Shared buttons go through `packages/app/components/pressable.tsx`. On web it behaves like a normal `Pressable` (`onPress`, so keyboard activation works). On native it fires on `onPressIn`, working around a React Native 0.81 + New Architecture + native-stack bug that drops `onPress` on some Android devices.
 
+### Local data
+
+Projects and tasks live in one versioned payload under `pivot.store.v1`. The store hydrates once on mount and will not write before it has read, so an existing sheet is never overwritten by the first empty render.
+
+- `packages/app/data/storage.ts` is used on web and reads `localStorage`.
+- `packages/app/data/storage.native.ts` is picked by Metro on iOS/Android and uses `@react-native-async-storage/async-storage`.
+- Both implement `StorageAdapter` from `storage-types.ts`, so the backing store can be swapped for SQLite or Supabase without touching feature code.
+
+There is no sample data: the app opens on an empty project list and the owner creates the first project.
+
 ### NativeWind and the Next.js App Router
 
 NativeWind does not support React Server Components. Every Next.js route that renders shared components starts with `'use client'`. The root `layout.tsx` is a server component and uses the documented escape hatch:
@@ -151,6 +161,8 @@ Do not remove that pragma. Without it the layout tries to use NativeWind's JSX r
 | Native modules / Expo packages | `apps/expo` (prefer `npx expo install`) |
 | Web-only packages              | `apps/next`                             |
 | Tooling used by the whole repo | root `devDependencies`                  |
+
+`@react-native-async-storage/async-storage` is declared in both `apps/expo` (so Expo autolinks it) and `packages/app` (because `storage.native.ts` imports it).
 
 Also:
 
@@ -173,7 +185,7 @@ If Solito ever blocks a Next upgrade, the escape hatch is a platform-specific na
 
 - `npm run typecheck` across all workspaces
 - `npm run build` (Next.js production build)
-- Web rendered in headless Chrome: SSR content, Solito links, dynamic route, `router.push`, light/dark toggle, no console errors
+- Web rendered in headless Chrome: project and task creation, subtasks with progress, comments and edits, auto-complete at 100%, reload persistence, light/dark toggle, no console errors
 - `expo export --platform android` produces a Hermes bundle
 - Android release APK built with Gradle, installed over adb on a physical device: NativeWind styles, light/dark toggle and navigation verified
 

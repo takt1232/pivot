@@ -7,6 +7,7 @@ import {
   initialWindowMetrics,
 } from 'react-native-safe-area-context'
 
+import { StoreProvider } from './store'
 import { ThemeProvider } from './theme'
 
 // SafeAreaProvider renders no children during SSR unless it has metrics.
@@ -23,7 +24,9 @@ export function Providers({ children }: PropsWithChildren) {
         Platform.OS === 'web' ? webMetrics : (initialWindowMetrics ?? undefined)
       }
     >
-      <ThemeProvider>{children}</ThemeProvider>
+      <ThemeProvider>
+        <StoreProvider>{children}</StoreProvider>
+      </ThemeProvider>
     </SafeAreaProvider>
   )
 }

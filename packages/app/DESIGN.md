@@ -75,6 +75,10 @@ components:
 
 # Design System: Pivot
 
+## Naming
+
+The product nouns are **Project** and **Task**. The scoresheet vocabulary is the visual metaphor: a project is one sheet, and its tasks are numbered rows with a result column. Labels on screen use Project and Task; the sheet keeps the turns, rules and margin marks.
+
 ## Overview
 
 **Creative North Star: "The Tournament Scoresheet"**
@@ -174,6 +178,12 @@ Square corners everywhere (0 radius). Borders do the work: 1px hairlines for row
 - **Fields:** 9px uppercase label in a 74px column, 12px Courier value, dotted 1px rule between rows.
 - **Sections:** Continuation, Annotation, Record, Also in this game — each separated by a rule, never by a card.
 - **Actions:** a single Resolve/Reopen control pinned to the bottom of the sheet.
+
+### Subtasks and comments
+
+- **Progress:** a 44px (compact) / 64px column in the task row and a field in the detail sheet. Shown only when a task has subtasks; 100% uses Resolved Green.
+- **Subtasks:** 30px rows with a checkbox glyph, title, and `edit` / `remove` words at 9px. Adding sits under the list as a ruled input and Add control.
+- **Comments:** Courier Prime body, 9.5px timestamp, `· edited` marker, and margin `edit` / `remove` words. The add box is ruled and multiline.
 
 ### Navigation
 

@@ -42,6 +42,7 @@ Confirmed:
 
 - Boards contain groups of items, ordered and reorderable; items carry columns and inline editing.
 - Items nest into subitems and checklists.
+- Tasks carry comments and subtasks. A task's progress percentage is derived from its subtasks and only appears once subtasks exist.
 - Date views: timeline (ranges across time) and calendar (due dates).
 - Dashboards and charts that aggregate the same board data.
 - Long-form docs and notes attached to a project.
@@ -50,7 +51,7 @@ Confirmed:
 
 Data:
 
-- Local-first storage. SQLite on native, browser-equivalent persistence on web, working offline without an account.
+- Local-first storage. A versioned JSON payload via AsyncStorage on native and `localStorage` on web, working offline without an account. The schema can move to SQLite once it settles.
 - The storage layer must sit behind an interface so it can be swapped for a hosted database such as Supabase without rewriting features. Do not hard-code local-only assumptions into feature code.
 
 Undecided:
@@ -60,7 +61,7 @@ Undecided:
 
 ## Evidence on Hand
 
-None. The current screens in `packages/app/features/` are framework demos over placeholder users in `packages/app/data/users.ts`. There is no real board data, no testimonials, no benchmarks, and no user research. Future work must not fabricate product claims, metrics or social proof.
+None. The app now stores the owner's own projects and tasks locally; there is no imported data, no testimonials, no benchmarks, and no user research. Future work must not fabricate product claims, metrics or social proof.
 
 ## Product Principles
 

@@ -1,3 +1,3 @@
-import { BoardScreen } from '@pivot/app'
+import { ProjectsScreen } from '@pivot/app'
 
-export default BoardScreen
+export default ProjectsScreen
