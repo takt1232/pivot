@@ -28,3 +28,6 @@ npm-debug.log*
 # os
 .DS_Store
 Thumbs.db
+
+# design round state: briefs, sketches, comps, review captures
+.impeccable/
